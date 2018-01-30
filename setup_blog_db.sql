@@ -1,0 +1,10 @@
+CREATE SCHEMA gorillablog;
+
+USE gorillablog;
+
+CREATE TABLE posts (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  title VARCHAR(45) NOT NULL,
+  post TEXT NOT NULL,
+  PRIMARY KEY (id)
+);
