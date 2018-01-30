@@ -11,6 +11,9 @@
 
   switch ($request_method) {
     case "POST":
+    handlePostRequest($conn);
+  }
+  function handlePostRequest($conn) {
     $title = $_POST['title'];
     $post = $_POST['post'];
     echo $title . "<br>" . $post;
