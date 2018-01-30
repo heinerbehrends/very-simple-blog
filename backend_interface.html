@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Make a new blog post</h1>
+    <form action="api.php" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter the title here" name="title">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter the blogpost here" name="post"></textarea>
+      </div>
+      <input type="submit"></input>
+    </form>
+  </div>
+
+</body>
+</html>
