@@ -19,11 +19,13 @@ switch ($request_method) {
 
 
 function handlePostRequest($conn) {
+  print_r($_POST);
   $title = $_POST['title'];
   $post = $_POST['post'];
-  $sql = "INSERT INTO posts (title, post) VALUES (?, ?)";
+  $category = $_POST['category'];
+  $sql = "INSERT INTO posts (title, post, category) VALUES (?, ?, ?)";
   $statement = $conn->prepare($sql);
-  $statement->bind_param("ss", $title, $post);
+  $statement->bind_param("sss", $title, $post, $category);
   $statement->execute();
 }
 function handleGetRequest($conn) {
