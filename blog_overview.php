@@ -9,37 +9,48 @@
 </head>
 <body>
   <div id="posts" class="container">
-    <?php
-    include 'config.php';
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    <div class="row">
+      <div class="col-auto-md">
+        <div class="card border-0">
+          <div class="card-header">
+            Categories
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item border-0">Music</li>
+            <li class="list-group-item border-0">Football</li>
+            <li class="list-group-item border-0">Programming</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <?php
+        include 'config.php';
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-    if (mysqli_connect_errno()) {
-      printf("Connect failed: %s\n", mysqli_connect_error());
-      exit();
-    }
-
-    function postsToArray($conn) {
-      $sql = "SELECT * FROM posts ORDER BY id DESC";
-      $result = $conn->query($sql);
-      $result_array = array();
-      if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-          array_push($result_array, $row);
+        if (mysqli_connect_errno()) {
+          printf("Connect failed: %s\n", mysqli_connect_error());
+          exit();
         }
-        return $result_array;
-      }
-    }
 
-    $posts_array = postsToArray($conn);
+        function postsToArray($conn) {
+          $sql = "SELECT * FROM posts ORDER BY id DESC";
+          $result = $conn->query($sql);
+          $result_array = array();
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              array_push($result_array, $row);
+            }
+            return $result_array;
+          }
+        }
 
-    foreach ($posts_array as $post) {
-      echo "<h1>" . $post['title'] . "</h1><p>" . $post['post'] . "</p>";
-    }
+        $posts_array = postsToArray($conn);
 
-
-
-
-    ?>
-  </div>
-</body>
-</html>
+        foreach ($posts_array as $post) {
+          echo "<h1>" . $post['title'] . "</h1><p>" . $post['post'] . "</p>";
+        }
+        ?>
+      </div>
+    </div>
+  </body>
+  </html>
