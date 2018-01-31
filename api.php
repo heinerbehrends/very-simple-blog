@@ -19,7 +19,7 @@ switch ($request_method) {
 
 
 function handlePostRequest($conn) {
-  print_r($_POST);
+  // print_r($_POST);
   $title = mysqli_real_escape_string($_POST['title']);
   $post = mysqli_real_escape_string($_POST['post']);
   $category = mysqli_real_escape_string($_POST['category']);
@@ -29,7 +29,11 @@ function handlePostRequest($conn) {
   $statement->execute();
 }
 function handleGetRequest($conn) {
-  $sql = "SELECT * FROM posts ORDER BY id DESC";
+  // debug_to_console(array_key_exists("category", $_GET));
+  $category = $_GET["category"];
+  // echo $category;
+
+  $sql = "SELECT * FROM posts WHERE category = '$category' ORDER BY id DESC";
   $result = $conn->query($sql);
   $result_array = array();
   if ($result->num_rows > 0) {
@@ -39,5 +43,12 @@ function handleGetRequest($conn) {
   }
   // echo a json encoded array to the client
   echo json_encode($result_array);
+}
+function debug_to_console($data) {
+  $output = $data;
+  if (is_array($output))
+  $output = implode(',', $output);
+
+  echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 ?>
