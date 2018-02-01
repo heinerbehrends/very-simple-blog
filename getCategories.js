@@ -1,6 +1,6 @@
 $(function() {
-  function makeCategory(category) {
-    return '<option value="' + category.toLowerCase() + '">' + category + '</option>';
+  function makeCategory(category_id, category) {
+    return '<option value="' + category_id + '">' + category + '</option>';
   }
   var categoriesElement = $("#categoriesSelector");
   $.ajax({
@@ -9,7 +9,9 @@ $(function() {
   }).done(function(data) {
     $.each(data, function(key, value) {
       var category = value["category"];
-      var categoryOption = makeCategory(category);
+      var category_id = value["id"];
+      console.log(category_id);
+      var categoryOption = makeCategory(category_id, category);
       categoriesElement.append(categoryOption);
     })
   })
