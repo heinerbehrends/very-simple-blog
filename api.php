@@ -16,6 +16,7 @@ switch ($request_method) {
   case "GET":
   handleGetRequest($conn);
 }
+$conn->close();
 
 
 function handlePostRequest($conn) {
