@@ -9,3 +9,9 @@ CREATE TABLE posts (
   category TEXT NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  category TEXT NOT NULL
+  PRIMARY KEY (id)
+);
