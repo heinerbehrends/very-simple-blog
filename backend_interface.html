@@ -19,8 +19,8 @@
     </form>
     <form action="api.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="categoriesSelector">Select a category</label>
-        <select class="form-control" id="categoriesSelector" name="category">
+        <label for="categoriesSelector">Select a category. Select multiple categories by holding the ctrl key and clicking.</label>
+        <select multiple class="form-control" id="categoriesSelector" name="category[]">
         </select>
       </div>
       <div class="form-group">
