@@ -26,7 +26,7 @@ function handlePostRequest($conn) {
   $title = $conn->real_escape_string($_POST['title']);
   $post = $conn->real_escape_string($_POST['post']);
   $category = $conn->real_escape_string($_POST['category']);
-  $sql = "INSERT INTO posts (title, post, category) VALUES (?, ?, ?)";
+  $sql = "INSERT INTO posts (title, post, category_id) VALUES (?, ?, ?)";
   $statement = $conn->prepare($sql);
   $statement->bind_param("sss", $title, $post, $category);
   $statement->execute();
@@ -39,7 +39,7 @@ function handleGetRequest($conn) {
     $sql = "SELECT * FROM posts";
   }
   else {
-    $sql = "SELECT * FROM posts WHERE category = '$category' ORDER BY id DESC";
+    $sql = "SELECT * FROM posts WHERE category_id = '$category' ORDER BY id DESC";
   }
   $result = $conn->query($sql);
   $result_array = array();
