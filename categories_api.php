@@ -13,8 +13,12 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 switch ($request_method) {
   case "POST":
   handlePostRequest($conn);
+  header("Location: success_category.html");
+  exit();
+  break;
   case "GET":
   handleGetRequest($conn);
+  break;
 }
 
 function handlePOSTRequest($conn) {
@@ -38,8 +42,6 @@ function handleGetRequest($conn) {
   echo json_encode($result_array);
 
 }
-
-
 
 $conn->close();
 
