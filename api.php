@@ -42,6 +42,8 @@ function handlePostRequest($conn) {
     $sqlArticlesCategories = "INSERT INTO articles_categories (article_id, category_id) VALUES ('$maxID', '$category')";
     $conn->query($sqlArticlesCategories);
   }
+  header("Location: success_post.html");
+  exit();
 }
 function handleGetRequest($conn) {
   // debug_to_console(array_key_exists("category", $_GET));
