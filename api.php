@@ -22,14 +22,26 @@ $conn->close();
 
 
 function handlePostRequest($conn) {
+  $categoriesArray = array();
   // print_r($_POST);
+  // foreach ($_POST["category"] as $key => $selectedCategory) {
+  //   $categoriesArray[$key] = $selectedCategory;
+  // }
+  // print_r($categoriesArray);
   $title = $conn->real_escape_string($_POST['title']);
   $post = $conn->real_escape_string($_POST['post']);
-  $category = $conn->real_escape_string($_POST['category']);
   $sql = "INSERT INTO posts (title, post, category_id) VALUES (?, ?, ?)";
   $statement = $conn->prepare($sql);
   $statement->bind_param("sss", $title, $post, $category);
   $statement->execute();
+
+  $sqlGetMaxID = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
+  $last_row = mysqli_fetch_assoc($conn->query($sqlGetMaxID));
+  $maxID = $last_row["id"];
+  foreach ($_POST['category'] as $category) {
+    $sqlArticlesCategories = "INSERT INTO articles_categories (article_id, category_id) VALUES ('$maxID', '$category')";
+    $conn->query($sqlArticlesCategories);
+  }
 }
 function handleGetRequest($conn) {
   // debug_to_console(array_key_exists("category", $_GET));
