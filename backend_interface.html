@@ -10,12 +10,12 @@
 <body>
   <div class="container">
     <h1>Make a new blog post</h1>
-    <form action="add_category.php" method="post">
+    <form action="categories_api.php" method="post">
       <div class="form-group">
         <label for="exampleFormControlInput1">Add a new category</label>
         <input class="form-control" id="exampleFormControlInput1" placeholder="Enter new category here" name="new_category">
       </div>
-      <input type="submit" value="Submit" class="btn"></input>
+      <input type="submit" value="Add Category" class="btn"></input>
     </form>
     <form action="api.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
@@ -27,16 +27,11 @@
         <label for="exampleFormControlInput1">Title</label>
         <input class="form-control" id="exampleFormControlInput1" placeholder="Enter the title here" name="title">
       </div>
-
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Title</label>
-        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter the title here" name="title">
-      </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Example textarea</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Enter the blogpost here" name="post"></textarea>
       </div>
-      <input type="submit" value="Submit" class="btn"></input>
+      <input type="submit" value="Submit blog post" class="btn"></input>
     </form>
   </div>
   <script
