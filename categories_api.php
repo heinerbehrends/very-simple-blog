@@ -30,7 +30,7 @@ function handlePOSTRequest($conn) {
 }
 
 function handleGetRequest($conn) {
-  $sql = "SELECT * FROM categories";
+  $sql = "SELECT * FROM categories ORDER BY category";
   $result = $conn->query($sql);
   $result_array = array();
   if ($result->num_rows > 0) {
