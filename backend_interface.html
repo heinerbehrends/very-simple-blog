@@ -9,14 +9,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>Make a new blog post</h1>
-    <form action="categories_api.php" method="post">
+    <h1 class="mt-5 mb-4">New blog post</h1>
+    <form action="categories_api.php" method="post" class="mb-3">
       <div class="form-group">
         <label for="exampleFormControlInput1">Add a new category</label>
         <input class="form-control" id="exampleFormControlInput1" placeholder="Enter new category here" name="new_category">
       </div>
       <input type="submit" value="Add Category" class="btn"></input>
     </form>
+    <hr>
     <form action="api.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="categoriesSelector">Select a category. Select multiple categories by holding the ctrl key and clicking.</label>
