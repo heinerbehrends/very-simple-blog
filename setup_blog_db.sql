@@ -19,7 +19,14 @@ CREATE TABLE articles_categories (
 id INT NOT NULL AUTO_INCREMENT,
 article_id INT NOT NULL,
 category_id INT NOT NULL,
-PRIMARY KEY (ID),
+PRIMARY KEY (id),
 FOREIGN KEY (article_id) REFERENCES articles(id),
 FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+CREATE TABLE text_expand (
+  id INT NOT NULL AUTO_INCREMENT,
+  abbreviation TEXT NOT NULL,
+  snippet TEXT NOT NULL,
+  PRIMARY KEY (id)
 );
