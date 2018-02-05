@@ -4,10 +4,10 @@ $(function() {
     return '<li id="' + category_id + '" class="list-group-item border-0 category-menu">' + category + '</li>';
   }
   var categoriesListElement = $("#selectCategory");
-
+  
   function makePost(title, post) {
-    return "<h1>" + title + "</h1> <p>" + post + "</p>";
-  }
+      return '<h2 class="mb-0">' + title + "</h2> <p style='font-size: 1.2rem' class='mb-5'>" + post + '</p><hr class="mb-5">';
+    }
   var postsElement = $("#posts");
 
   $.ajax({
