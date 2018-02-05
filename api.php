@@ -35,9 +35,9 @@ function handlePostRequest($conn) {
   $statement->bind_param("ss", $title, $post);
   $statement->execute();
 
-  $sqlGetMaxID = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
-  $last_row = mysqli_fetch_assoc($conn->query($sqlGetMaxID));
-  $maxID = $last_row["id"];
+    // $sqlGetMaxID = "SELECT * FROM posts ORDER BY id DESC LIMIT 1";
+    // $last_row = mysqli_fetch_assoc($conn->query($sqlGetMaxID));
+  $maxID = $conn->insert_id;
   foreach ($_POST['category'] as $category) {
     $sqlArticlesCategories = "INSERT INTO articles_categories (article_id, category_id) VALUES ('$maxID', '$category')";
     $conn->query($sqlArticlesCategories);
