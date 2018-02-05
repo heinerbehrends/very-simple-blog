@@ -15,8 +15,6 @@ CREATE TABLE categories (
   PRIMARY KEY (id)
 );
 
-ALTER TABLE posts ADD FOREIGN KEY (category_id) REFERENCES categories(id);
-
 CREATE TABLE articles_categories (
 id INT NOT NULL AUTO_INCREMENT,
 article_id INT NOT NULL,
