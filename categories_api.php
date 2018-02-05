@@ -8,9 +8,7 @@ if (mysqli_connect_errno()) {
   exit();
 }
 
-$request_method = $_SERVER["REQUEST_METHOD"];
-
-switch ($request_method) {
+switch ($_SERVER["REQUEST_METHOD"]) {
   case "POST":
   handlePostRequest($conn);
   header("Location: success_category.html");
@@ -21,7 +19,7 @@ switch ($request_method) {
   break;
 }
 
-function handlePOSTRequest($conn) {
+function handlePostRequest($conn) {
   $category = mysqli_real_escape_string($conn, $_POST['new_category']);
   $sql = "INSERT INTO categories (category) VALUES (?)";
   $statement = $conn->prepare($sql);
