@@ -79,7 +79,7 @@ function handleGetRequest($conn) {
       }
     }
     $posts_string = $posts_string . ")";
-    $sql_get_posts_by_category = "SELECT * from posts WHERE id in $posts_string";
+    $sql_get_posts_by_category = "SELECT * from posts WHERE id in $posts_string ORDER BY id DESC";
   }
   $sql_result_posts_by_category = $conn->query($sql_get_posts_by_category);
   $result_array_posts_by_category = array();
