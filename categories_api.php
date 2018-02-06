@@ -10,16 +10,16 @@ if (mysqli_connect_errno()) {
 
 switch ($_SERVER["REQUEST_METHOD"]) {
   case "POST":
-  handlePostRequest($conn);
+  insert_new_category($conn);
   header("Location: success_category.html");
   exit();
   break;
   case "GET":
-  handleGetRequest($conn);
+  categories_to_json($conn);
   break;
 }
 
-function handlePostRequest($conn) {
+function insert_new_category($conn) {
   $category = mysqli_real_escape_string($conn, $_POST['new_category']);
   $sql = "INSERT INTO categories (category) VALUES (?)";
   $statement = $conn->prepare($sql);
@@ -27,7 +27,7 @@ function handlePostRequest($conn) {
   $statement->execute();
 }
 
-function handleGetRequest($conn) {
+function categories_to_json($conn) {
   $sql = "SELECT * FROM categories ORDER BY category";
   $result = $conn->query($sql);
   $result_array = array();
@@ -36,9 +36,7 @@ function handleGetRequest($conn) {
       array_push($result_array, $row);
     }
   }
-  // echo a json encoded array to the client
   echo json_encode($result_array);
-
 }
 
 $conn->close();
