@@ -30,3 +30,10 @@ CREATE TABLE text_expand (
   snippet TEXT NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE comments (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  comment TEXT NOT NULL,
+  article_id INT NOT NULL,
+  PRIMARY KEY (id)
+);
