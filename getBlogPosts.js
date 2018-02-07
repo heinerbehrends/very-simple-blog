@@ -56,9 +56,25 @@ $(function() {
       $('.comment').each(function() {
         for (var i=0; i<data.length; i++) {
           if (data[i]['id'] === $(this).attr('id')) {
-            $(this).append('<p class="comment-paragraph">' + data[i]['comment'] + '</p>');
+            $(this).append(
+              '<div class="row">'
+              + '<p class="comment-paragraph col">' + data[i]['comment'] + '</p>'
+              + '<div class="col-auto ml-auto delete-button"><img data-commentID="' + data[i]['comment_id'] + '" src="delete_icon" alt="delete icon" style="height:20px"></div>'
+              + '</div>'
+            );
           }
         }
+      })
+      $(".delete-button").click(function() {
+        var comment_id = $(this).children().attr('data-commentID');
+        $.ajax({
+          method: 'POST',
+          url: 'delete_comment.php',
+          context: $(this),
+          data: {comment_id: comment_id}
+        }).done(function() {
+            $(this).parent().remove();
+        })
       })
     })
 
@@ -75,7 +91,9 @@ $(function() {
         context: $(this),
         data: commentData,
         success: function(data) {
-          $(this).prev().append('<p class="comment-paragraph">' + data + '</p>');
+          $(this).prev().append(
+            '<p class="comment-paragraph">' + data + '</p>'
+          );
           $(this).val("");
         }
       })
