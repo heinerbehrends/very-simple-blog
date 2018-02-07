@@ -35,7 +35,7 @@ function insert_new_comment($conn) {
 }
 
 function comments_to_json($conn) {
-  $sql = "SELECT p.id, c.comment, c.id from posts p, comments c WHERE p.id = c.article_id ORDER BY c.id";
+  $sql = "SELECT p.id, c.comment, c.id AS comment_id from posts p, comments c WHERE p.id = c.article_id ORDER BY c.id";
   $result = $conn->query($sql);
   $result_array = array();
   if ($result->num_rows > 0) {
