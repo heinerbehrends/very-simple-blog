@@ -35,5 +35,6 @@ CREATE TABLE comments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   comment TEXT NOT NULL,
   article_id INT NOT NULL,
+  FOREIGN KEY (article_id) REFERENCES articles(id),
   PRIMARY KEY (id)
 );
