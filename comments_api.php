@@ -26,10 +26,16 @@ function insert_new_comment($conn) {
   $statement = $conn->prepare($sql);
   $statement->bind_param("si", $comment, $article_id);
   $statement->execute();
+  if($statement->execute() == true) {
+      echo $comment;
+    }
+    else {
+      echo "ERROR: Not able to execute $stmt. " . $conn->error;
+    }
 }
 
 function comments_to_json($conn) {
-  $sql = "SELECT * FROM comments ORDER BY id DESC";
+  $sql = "SELECT p.id, c.comment, c.id from posts p, comments c WHERE p.id = c.article_id ORDER BY c.id";
   $result = $conn->query($sql);
   $result_array = array();
   if ($result->num_rows > 0) {
