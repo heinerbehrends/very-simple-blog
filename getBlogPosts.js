@@ -5,9 +5,15 @@ $(function() {
   }
   var categoriesListElement = $("#selectCategory");
 
+  function makeComment(comment) {
+    '<p class="commentParagraph">' + comment + '</p>'
+  }
+
   function makePost(title, post, id) {
-      return '<h2 class="mb-0">' + title + "</h2> <p style='font-size: 1.2rem' class='mb-3'>"
-              + post + '</p>'
+      return '<h2 class="mb-0">' + title + '</h2>'
+              + "<p style='font-size: 1.2rem' class='mb-3'>" + post + '</p>'
+              + '<h3>Comments</h3>'
+              + '<div id="' + id + '" class="comment"></div>'
               + '<form data-id="' + id + '"class="commentary-form" method="post" enctype="multipart/form-data">'
               + '<div class="form-group">'
               + '<label for="commentary" class="sr-only">Commentary</label>'
@@ -30,17 +36,30 @@ $(function() {
     getCategoryPosts();
   })
 
+
   $.ajax({
     method: "GET",
     url: "api.php?category=ALL",
   }).done(function(data) {
     $.each(data, function(key, value) {
-      console.log('id is ' + value['id']);
       var id = value['id'];
       var title = value["title"];
       var post = value["post"];
       var post = makePost(title, post, id);
       postsElement.append(post);
+    })
+
+    $.ajax({
+      method: 'GET',
+      url: "comments_api.php",
+    }).done(function(data) {
+      $('.comment').each(function() {
+        for (var i=0; i<data.length; i++) {
+          if (data[i]['id'] === $(this).attr('id')) {
+            $(this).append('<p class="comment-paragraph">' + data[i]['comment'] + '</p>');
+          }
+        }
+      })
     })
 
     var forms = $(".commentary-form");
@@ -51,10 +70,14 @@ $(function() {
       commentData['article_id'] = $(this).data('id');
       $.ajax({
         method: 'POST',
-        url: "commentary_api.php",
-        data: commentData
-      }).done(function() {
-
+        url: "comments_api.php",
+        dataType: "text",
+        context: $(this),
+        data: commentData,
+        success: function(data) {
+          $(this).prev().append('<p class="comment-paragraph">' + data + '</p>');
+          $(this).val("");
+        }
       })
     })
   })
@@ -63,13 +86,10 @@ $(function() {
     $(".category-menu").click(function() {
       var category = $(this)[0].getAttribute("id");
       postsElement.html("");
-      console.log("api.php?category=" + category);
       $.ajax({
         method: "GET",
         url: "api.php?category=" + category,
       }).done(function(data) {
-        console.log(data);
-
         $.each(data, function(key, value) {
           var postCategory = value["category"];
           var post = makePost(value["title"], value["post"]);
