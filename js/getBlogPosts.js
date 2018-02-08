@@ -14,7 +14,7 @@ $(function() {
     + "<p style='font-size: 1.2rem' class='mb-3'>" + post + '</p>'
     if (comments_on_off) {
       post_string += '<div class="comments_on_off" data-id="' + id + '" data-on_off="0">'
-      + '<img style="height: 30px" class="mr-3 my-3" src="on-off-button.svg">'
+      + '<img style="height: 30px" class="mr-3 my-3" src="icons/on-off-button.svg">'
       + '<span>Click here to turn off comments for this post</span></div>'
       + '<h3 class="mt-3">Comments</h3>'
       + '<div id="' + id + '" class="comment"></div>'
@@ -27,7 +27,7 @@ $(function() {
     }
     else {
       return post_string += '<div class="comments_on_off" data-id="' + id + '" data-on_off="1">'
-      + '<img style="height: 30px" class="mr-3 my-3" src="on-off-button.svg">'
+      + '<img style="height: 30px" class="mr-3 my-3" src="icons/on-off-button.svg">'
       + '<span>Click here to turn on comments for this post</span></div>'+ '<hr class="my-5">';
     }
   }
@@ -36,7 +36,7 @@ $(function() {
 
   $.ajax({
     method: "GET",
-    url: "categories_api.php",
+    url: "php/categories_api.php",
   }).done(function(data) {
     $.each(data, function(key, value) {
       var category = value["category"];
@@ -50,7 +50,7 @@ $(function() {
 
   $.ajax({
     method: "GET",
-    url: "api.php?category=ALL",
+    url: "php/api.php?category=ALL",
   }).done(function(data) {
     $.each(data, function(key, value) {
       var id = value['id'];
@@ -63,7 +63,7 @@ $(function() {
 
     $.ajax({
       method: 'GET',
-      url: "comments_api.php",
+      url: "php/comments_api.php",
     }).done(function(data) {
       $('.comment').each(function() {
         for (var i=0; i<data.length; i++) {
@@ -72,7 +72,7 @@ $(function() {
               '<div class="row">'
               + '<p class="comment-paragraph col">' + data[i]['comment'] + '</p>'
               + '<div class="col-auto ml-auto delete-button">'
-              + '<img data-commentID="' + data[i]['comment_id'] + '" src="delete_icon" alt="delete icon" style="height:15px"></div>'
+              + '<img data-commentID="' + data[i]['comment_id'] + '" src="icons/delete_icon.svg" alt="delete icon" style="height:15px"></div>'
               + '</div>'
             );
           }
@@ -82,7 +82,7 @@ $(function() {
         var comment_id = $(this).children().attr('data-commentID');
         $.ajax({
           method: 'POST',
-          url: 'delete_comment.php',
+          url: 'php/delete_comment.php',
           context: $(this),
           data: {comment_id: comment_id}
         }).done(function() {
@@ -94,7 +94,7 @@ $(function() {
         var post_id = $(this).attr('data-id');
         $.ajax({
           method: 'POST',
-          url: 'comments_on_off.php',
+          url: 'php/comments_on_off.php',
           context: $(this),
           dataType: 'text',
           data: {on_off: on_off, post_id: post_id}
@@ -112,7 +112,7 @@ $(function() {
       commentData['article_id'] = $(this).data('id');
       $.ajax({
         method: 'POST',
-        url: "comments_api.php",
+        url: "php/comments_api.php",
         dataType: "text",
         context: $(this),
         data: commentData,
@@ -132,7 +132,7 @@ $(function() {
       postsElement.html("");
       $.ajax({
         method: "GET",
-        url: "api.php?category=" + category,
+        url: "php/api.php?category=" + category,
       }).done(function(data) {
         $.each(data, function(key, value) {
           var postCategory = value["category"];
@@ -143,12 +143,23 @@ $(function() {
           var post = makePost(title, post, id, comments_on_off);
           postsElement.append(post);
         })
+        $(".delete-button").click(function() {
+          var comment_id = $(this).children().attr('data-commentID');
+          $.ajax({
+            method: 'POST',
+            url: 'php/delete_comment.php',
+            context: $(this),
+            data: {comment_id: comment_id}
+          }).done(function() {
+            $(this).parent().remove();
+          })
+        })
         $(".comments_on_off").click(function() {
           var on_off = $(this).attr('data-on_off');
           var post_id = $(this).attr('data-id');
           $.ajax({
             method: 'POST',
-            url: 'comments_on_off.php',
+            url: 'php/comments_on_off.php',
             context: $(this),
             dataType: 'text',
             data: {on_off: on_off, post_id: post_id}

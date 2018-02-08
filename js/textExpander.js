@@ -2,7 +2,7 @@ $(function() {
   var rulesObject = {};
   $.ajax({
     method: "GET",
-    url: "text_expansion_api.php",
+    url: "php/text_expansion_api.php",
   }).done(function(data) {
     $.each(data, function(key, rule) {
       rulesObject[rule['abbreviation']] = rule['snippet'];
