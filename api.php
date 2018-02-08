@@ -43,12 +43,12 @@ function handleGetRequest($conn) {
     $sql_get_posts_by_category = "SELECT * FROM posts ORDER BY id DESC";
   }
   else {
-    $sql_get_posts_by_category = "SELECT posts.title, posts.post
+    $sql_get_posts_by_category = "SELECT posts.title, posts.post, posts.id, posts.comments_on_off
                                   FROM posts
                                   INNER JOIN articles_categories a2c
                                   ON posts.id = a2c.article_id
                                   WHERE a2c.category_id = '$category';";
-                                }
+  }
 
   $sql_result_posts_by_category = $conn->query($sql_get_posts_by_category);
   $result_array_posts_by_category = array();
