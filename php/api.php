@@ -47,7 +47,8 @@ function handleGetRequest($conn) {
                                   FROM posts
                                   INNER JOIN articles_categories a2c
                                   ON posts.id = a2c.article_id
-                                  WHERE a2c.category_id = '$category';";
+                                  WHERE a2c.category_id = '$category'
+                                  ORDER BY posts.id DESC";
   }
 
   $sql_result_posts_by_category = $conn->query($sql_get_posts_by_category);
