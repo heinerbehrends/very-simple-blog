@@ -6,6 +6,7 @@ CREATE TABLE posts (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   title VARCHAR(256) NOT NULL,
   post TEXT NOT NULL,
+  comments_on_off INT DEFAULT 1,
   PRIMARY KEY (id)
 );
 
