@@ -18,10 +18,10 @@ CREATE TABLE categories (
 
 CREATE TABLE articles_categories (
 id INT NOT NULL AUTO_INCREMENT,
-article_id INT NOT NULL,
-category_id INT NOT NULL,
+article_id INT UNSIGNED NOT NULL,
+category_id INT UNSIGNED NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (article_id) REFERENCES articles(id),
+FOREIGN KEY (article_id) REFERENCES posts(id),
 FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
