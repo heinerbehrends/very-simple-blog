@@ -31,7 +31,7 @@ function insert_blog_post_data($conn) {
                               VALUES ('$article_id', '$category')";
     $conn->query($sqlArticlesCategories);
   }
-  // header("Location: ../success_post.html");
+  header("Location: ../success_post.html");
   exit();
 }
 
