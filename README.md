@@ -7,11 +7,16 @@ Trello link: https://trello.com/b/zj06nmuY/simple-php-blog
 
 Live site at http://www.wijzijncodegorilla.nl/heinerbehrends/simple-blog/
 
-and http://www.wijzijncodegorilla.nl/heinerbehrends/simple-blog/backend_interface.html
+http://www.wijzijncodegorilla.nl/heinerbehrends/simple-blog/backend_interface.html
 
-- Uses jQuery and ajax to change the posts that are displayed when a user clicks on the categories and mysqli to read and write. 
+http://www.wijzijncodegorilla.nl/heinerbehrends/simple-blog/add_categories_and_snippets.html
+
+- Uses jQuery and ajax to change the posts that are displayed when a user clicks on the categories and mysqli to read and write.
 - Switches between categories without reloading.
-- Success message for new category and new post.
-- N:M relation to assign multiple categories is partially implemented in the GitHub code, but not in the live version. 
+- N:M relation to assign multiple categories.
+- user defined text expander
+- anonymous comment functionality
+- comments can be deleted
+- comments can be turned on and off for each article
 - No file upload functionality implemented yet.
 - No login system
