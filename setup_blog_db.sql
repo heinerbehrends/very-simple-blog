@@ -35,7 +35,7 @@ CREATE TABLE text_expand (
 CREATE TABLE comments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   comment TEXT NOT NULL,
-  article_id INT NOT NULL,
-  FOREIGN KEY (article_id) REFERENCES articles(id),
+  article_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (article_id) REFERENCES posts(id),
   PRIMARY KEY (id)
 );
