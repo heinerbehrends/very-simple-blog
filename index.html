@@ -9,14 +9,15 @@
   <title>Gorilla Blog</title>
 </head>
 <body style="font-family: 'Vollkorn', serif;">
+  <style> .active {text-decoration: underline!important}; </style>
   <h1 style="font-size:4rem" class="text-center mt-5 mb-4">Gorilla Blog</h1>
   <div class="container">
     <div class="row">
       <div class="col-auto-md">
         <div class="card border-0">
-          <ul style="font-size: 1.2rem" id="selectCategory" class="list-group list-group-flush">
-            <li id="ALL" class="category-menu list-group-item border-0">All</li>
-          </ul>
+          <nav style="font-size: 1.2rem" id="selectCategory" class="nav flex-column">
+            <a id="ALL" class="nav-link category-menu my-1 active">All</a>
+          </nav>
         </div>
       </div>
       <div class="col" id="posts"></div>
