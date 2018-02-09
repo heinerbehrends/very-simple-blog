@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Document</title>
+  <title>New Blog Post</title>
 </head>
 <body>
   <div class="container">
     <h1 class="mt-5 mb-4">New blog post</h1>
-    <form action="api.php" method="post" enctype="multipart/form-data">
+    <form class="mb-5" action="php/api.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="categoriesSelector">Select a category. Select multiple categories by holding the ctrl key and clicking.</label>
-        <select multiple class="form-control" id="categoriesSelector" name="category[]">
+        <select required multiple class="form-control" id="categoriesSelector" name="category[]">
         </select>
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
-        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter the title here" name="title">
+        <input required class="form-control" id="exampleFormControlInput1" placeholder="Enter the title here" name="title">
       </div>
       <div class="form-group">
         <label for="text-area">Write your blog post here</label>
-        <textarea class="form-control" id="text-area" rows="10" placeholder="Enter the blogpost here" name="post"></textarea>
+        <textarea required class="form-control" id="text-area" rows="10" placeholder="Enter the blogpost here" name="post"></textarea>
       </div>
       <input type="submit" value="Submit blog post" class="btn"></input>
     </form>
@@ -32,7 +32,7 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous">
   </script>
-  <script src="js/getCategories"></script>
+  <script src="js/getCategories.js"></script>
   <script src="js/textExpander.js"></script>
 </body>
 </html>

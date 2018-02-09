@@ -13,7 +13,7 @@
     <form action="php/categories_api.php" method="post" class="mb-3">
       <div class="form-group">
         <label for="exampleFormControlInput1">Add a new category</label>
-        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter new category here" name="new_category">
+        <input required class="form-control" id="exampleFormControlInput1" placeholder="Enter new category here" name="new_category">
       </div>
       <input type="submit" value="Add Category" class="btn"></input>
     </form>
@@ -22,11 +22,11 @@
     <form action="php/text_expansion_api.php" method="post" enctype="multipart/form-data">
       <div class="form-group-row mb-4">
         <label for="key" class="sr-only">Enter abbreviation</label>
-        <input type="text" class="form-control" id="key" name="abbreviation" placeholder="Enter your abbreviation here">
+        <input required type="text" class="form-control" id="key" name="abbreviation" placeholder="Enter your abbreviation here">
       </div>
       <div class="form-group">
         <label for="text-area" class="sr-only">Enter the snippet you want to abbreviate</label>
-        <textarea class="form-control" id="text-area" rows="10" placeholder="Enter the snippet you want to abbreviate here" name="snippet"></textarea>
+        <textarea required class="form-control" id="text-area" rows="10" placeholder="Enter the snippet you want to abbreviate here" name="snippet"></textarea>
       </div>
       <input type="submit" value="Add new rule" class="btn mb-2"></input>
     </form>
