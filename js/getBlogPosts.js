@@ -7,7 +7,7 @@ $(function() {
     method: "GET",
     url: "php/api.php?category=ALL",
   }).done(function(data) {
-    addPost(data);
+    addPosts(data);
   })
 
   $.ajax({
@@ -24,12 +24,12 @@ $(function() {
         method: "GET",
         url: "php/api.php?category=" + category,
       }).done(function(data) {
-        addPost(data);
+        addPosts(data);
       });
     })
   })
 
-  function addPost(data) {
+  function addPosts(data) {
     $.each(data, function(key, value) {
       var post = makePost(
         value["title"], value["post"], value['id'], parseInt(value["comments_on_off"])
@@ -105,6 +105,8 @@ $(function() {
           $(this).prev().append(
             makeComment(data['comment'], data['comment_id'])
           );
+          $(this).val('');
+          addDeleteHandler();
         }
       })
     })
