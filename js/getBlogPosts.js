@@ -35,8 +35,6 @@ $(function() {
         value["title"], value["post"], value['id'], parseInt(value["comments_on_off"])
       );
       postsElement.append(post);
-      postsElement.contents().fadeIn('fast');
-
     })
     getComments();
     postComment();
@@ -123,8 +121,7 @@ $(function() {
     + "<p style='font-size: 1.2rem' class='mb-3'>" + post + '</p>'
     if (comments_on_off) {
       post_string += '<div class="comments_on_off" data-id="' + id + '" data-on_off="0">'
-      + '<img style="height: 23px" class="mr-3 my-3" src="icons/on-off-button.svg">'
-      + '<span>Click here to turn off comments for this post</span></div>'
+      + '<hr><p class="text-center">Click here to turn off comments for this post</p></div>'
       + '<h3 class="text-center mt-3">Comments</h3>'
       + '<div id="' + id + '" class="comment"></div>'
       + '<form data-id="' + id + '"class="commentary-form" method="post" enctype="multipart/form-data">'
@@ -136,8 +133,8 @@ $(function() {
     }
     else {
       return post_string += '<div class="comments_on_off" data-id="' + id + '" data-on_off="1">'
-      + '<img style="height: 23px" class="mr-3 my-3" src="icons/on-off-button.svg">'
-      + '<span>Click here to turn on comments for this post</span></div>'+ '<hr class="my-5">';
+      + '<hr>'
+      + '<p class="text-center">Click here to turn on comments for this post</p></div>'+ '<hr class="mb-5">';
     }
   }
 
