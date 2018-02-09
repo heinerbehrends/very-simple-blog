@@ -19,11 +19,11 @@ $(function() {
     })
     $(".category-menu").click(function() {
       var category = $(this)[0].getAttribute("id");
-      postsElement.html("");
       $.ajax({
         method: "GET",
         url: "php/api.php?category=" + category,
       }).done(function(data) {
+        postsElement.contents().fadeOut();
         addPosts(data);
       });
     })
@@ -35,6 +35,8 @@ $(function() {
         value["title"], value["post"], value['id'], parseInt(value["comments_on_off"])
       );
       postsElement.append(post);
+      postsElement.contents().fadeIn('fast');
+
     })
     getComments();
     postComment();
