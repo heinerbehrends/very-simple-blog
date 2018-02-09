@@ -19,6 +19,8 @@ $(function() {
     })
     $(".category-menu").click(function() {
       var category = $(this)[0].getAttribute("id");
+      $(this).addClass('active');
+      $(this).siblings().removeClass('active');
       $.ajax({
         method: "GET",
         url: "php/api.php?category=" + category,
@@ -113,12 +115,12 @@ $(function() {
   }
 
   function makeCategoryListItem(category_id, category) {
-    return '<li id="' + category_id + '" class="list-group-item border-0 category-menu">' + category + '</li>';
+    return '<a id="' + category_id + '" class="nav-link category-menu my-1">' + category + '</a>';
   }
 
   function makePost(title, post, id, comments_on_off) {
     var post_string = '<h2 class="mb-0">' + title + '</h2>'
-    + "<p style='font-size: 1.2rem' class='mb-3'>" + post + '</p>'
+    + "<article style='font-size: 1.2rem' class='mb-3'>" + post + '</article>'
     if (comments_on_off) {
       post_string += '<div class="comments_on_off" data-id="' + id + '" data-on_off="0">'
       + '<hr><p class="text-center">Click here to turn off comments for this post</p></div>'
