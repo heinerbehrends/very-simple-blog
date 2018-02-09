@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Document</title>
+  <title>Add categories and snippets</title>
 </head>
 <body>
   <div class="container">
     <h1 class="mt-5 mb-4">Add a category</h1>
-    <form action="categories_api.php" method="post" class="mb-3">
+    <form action="php/categories_api.php" method="post" class="mb-3">
       <div class="form-group">
         <label for="exampleFormControlInput1">Add a new category</label>
         <input class="form-control" id="exampleFormControlInput1" placeholder="Enter new category here" name="new_category">
@@ -19,7 +19,7 @@
     </form>
     <hr>
     <h1 class="mt-5 mb-4">Add a rule for text expansion</h1>
-    <form action="text_expansion_api.php" method="post" enctype="multipart/form-data">
+    <form action="php/text_expansion_api.php" method="post" enctype="multipart/form-data">
       <div class="form-group-row mb-4">
         <label for="key" class="sr-only">Enter abbreviation</label>
         <input type="text" class="form-control" id="key" name="abbreviation" placeholder="Enter your abbreviation here">

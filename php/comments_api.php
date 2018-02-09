@@ -20,14 +20,15 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 }
 
 function insert_new_comment($conn) {
-  $comment = $conn->real_escape_string($_POST['comment']);
-  $article_id = $conn->real_escape_string($_POST['article_id']);
   $sql = "INSERT INTO comments (comment, article_id) VALUES (?, ?)";
   $statement = $conn->prepare($sql);
-  $statement->bind_param("si", $comment, $article_id);
-  $statement->execute();
+  $statement->bind_param("si", $_POST['comment'], $_POST['article_id']);
   if($statement->execute() == true) {
-      echo $comment;
+      $comment_array = array(
+        'comment' => $_POST['comment'],
+        'comment_id' => $_POST['article_id']
+      );
+      echo json_encode($comment_array);
     }
     else {
       echo "ERROR: Not able to execute $stmt. " . $conn->error;

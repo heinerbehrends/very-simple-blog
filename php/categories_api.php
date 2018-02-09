@@ -11,7 +11,7 @@ if (mysqli_connect_errno()) {
 switch ($_SERVER["REQUEST_METHOD"]) {
   case "POST":
   insert_new_category($conn);
-  header("Location: success_category.html");
+  header("Location: ../success_category.html");
   exit();
   break;
   case "GET":
@@ -20,10 +20,9 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 }
 
 function insert_new_category($conn) {
-  $category = mysqli_real_escape_string($conn, $_POST['new_category']);
   $sql = "INSERT INTO categories (category) VALUES (?)";
   $statement = $conn->prepare($sql);
-  $statement->bind_param("s", $category);
+  $statement->bind_param("s", $_POST['new_category']);
   $statement->execute();
 }
 

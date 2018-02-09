@@ -11,7 +11,7 @@ if (mysqli_connect_errno()) {
 switch ($_SERVER["REQUEST_METHOD"]) {
   case "POST":
   write_new_rule($conn);
-  header("Location: success_new_rule.html");
+  header("Location: ../success_new_rule.html");
   exit();
   break;
   case "GET":
@@ -21,11 +21,9 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 }
 
 function write_new_rule($conn) {
-  $abbreviation = mysqli_real_escape_string($conn, $_POST['abbreviation']);
-  $snippet = mysqli_real_escape_string($conn, $_POST['snippet']);
   $sql = "INSERT INTO text_expand (abbreviation, snippet) VALUES (?, ?)";
   $statement = $conn->prepare($sql);
-  $statement->bind_param("ss", $abbreviation, $snippet);
+  $statement->bind_param("ss", $_POST['abbreviation'], $_POST['snippet']);
   $statement->execute();
 }
 
